@@ -1,8 +1,174 @@
-/* Your styles should be mobile-first and responsive */
 
-/** 
-  * If you are unclear on how to utilize a mobile-first, responsive technique to write your CSS, here is an example: 
-  *
-  * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
-  *
-*/
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+html{
+  box-sizing: border-box;
+}
+
+body{
+
+  background:#DDDFDF;
+   display: grid;
+   place-items: center;
+   height: 100vh;
+   padding-bottom: 200px;
+   padding-top: 50px;
+   
+   background-size: cover, cover;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-blend-mode:normal, luminosity;
+ 
+ }
+h1{
+  font-family:'Baloo Bhaina 2', cursive;
+  font-weight: 700 ;
+
+}
+.neuro{
+  font-family:'Press Start 2P', sans-serif;
+  margin-left:10px;
+  padding-top: 0.3em;
+  padding-left: 0.3em;
+  padding-right:0.2;
+  padding-bottom: 0.3em;
+  background:#FCA17D;
+  color:#9A348E;
+  font-weight: 300;
+  font: size 14px;;
+}
+h2{
+  font-family:'Baloo Bhaina 2', cursive;
+  font-weight: 700 ;
+  text-align:center;
+}  
+
+.box{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin:5px;
+  padding: 5px 0px 5px 0px;
+  height: auto;
+    
+}
+
+
+
+#question-screen{
+  text-align: left;
+}
+
+#question-screen ul{
+  padding: 0px 15px 0px 15px;
+  list-style: none;
+  margin-top: 0px
+}
+#question-screen ul div{
+  margin:5px;
+  padding: 0px;
+  margin-top:0
+}
+#question-screen ul div p{
+margin-left: 0; 
+margin-right: 0;
+}
+.container{
+  display:flex;
+  flex-direction: column;
+  margin:auto;
+  margin-bottom:10px;
+  background-color:#DA627D ;
+ 
+
+
+}
+.innercontainer{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.next-question,.submit-question{
+  width: 100%;
+  margin: auto;
+  padding: 0px 8px 0px 8px;
+  font-family:'Baloo Bhaina 2', cursive;
+  font-weight: 300;
+}
+
+
+.next-question,.submit-question {
+  margin-top:10px;
+  padding-top: 0.3em; 
+  width: 50%;
+  border-radius: 20px;
+  background-color: #3D3A4B;
+  color:white;
+  
+}
+
+.again-button{
+  margin:auto;
+}
+#start{
+  margin:auto;
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: larger;
+  background-color: none;
+  
+}
+ul, p{
+  font-family:'Baloo Bhaina 2', cursive;
+  font-weight: 200;
+  font-size: 12px;
+  margin:15px;
+  margin-top:0
+}
+
+
+li {
+  margin-top: 10px;
+ 
+}
+
+
+.text-left {
+  text-align: left; 
+  margin: 0px 4px 10px 14px;
+  font-family:'Baloo Bhaina 2', cursive;
+  font-weight: 200;
+}
+
+@media all and (min-width:600px) {
+
+.box {
+
+ 
+  width: 400px;
+  
+}
+
+}
+
+.textbox {
+
+    all: inherit;
+}
+
+body{
+ 
+ 
+  background-size: contain, cover;
+  background-repeat: no-repeat;
+  background-position: center, left top;
+  background-blend-mode: normal, darken;
+}
+
+ul, p {
+  font-size: 25px;
+}

@@ -1,0 +1,74 @@
+//questions
+
+
+topic: psychology
+
+first step: 5 questions with 4 multiple choices
+
+question string, array of answers, another string for the correct answer 
+
+1)Which part of the brain houses our abilities to organize tasks and carry them out?
+
+a)Orbital lobe
+b)prefrontal lobe
+c)partietal lobe
+d)temporal lobe
+
+2)What activity has shown to help regrow grey matter in the brain?
+
+a)running
+b)swimming
+c)meditating
+d)doing puzzles
+
+3)Does the brain influence the body and vice versa?
+
+a)yes, but not very much
+b)no, not at all
+c)yes and its a lot
+d)No one is sure  
+
+4)How many layers exist in the visual cortex?
+
+a)2
+b)0
+c)5
+d)10
+
+
+
+
+1)start page, i.e. a start button
+
+    a)title of quiz 
+    b)start button
+
+2) the actual quiz
+
+    a)HTML for a current score
+    b)HTML for the current question "question 1 out of 5"
+    c)question and its multiple choices
+    d)submit button, question MUST be in a form
+
+3) load question and choices 
+
+    a)radio buttons
+
+4)get user input and check the answers
+
+    a)user selecting radio button
+    b)set up event listener for submit
+    c)notify user if they are wrong or right and what the right answer is if they are wrong
+
+5)update question number and current score
+
+    a)update question number and score in the STORE object
+    b)run the render function to update the HTML
+    
+
+6)go to next question, etc until last question is answered
+
+    a)repeat previous steps from #5 
+
+7)clear out question and display final score
+
