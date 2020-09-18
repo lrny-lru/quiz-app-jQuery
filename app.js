@@ -128,7 +128,7 @@ const store = {
 
 function labQuestionRetriever() {
   //haha dog joke
-  //this function takes the store and gives the question value for adding to the template
+
   let num = store.questionNumber;
   let nextQuestion = store.questions[num];
   console.log(nextQuestion);
@@ -141,8 +141,6 @@ function templateQGenerator() {
   console.log("`templateGenerator`  ran");
   let question = labQuestionRetriever();
   console.log("q# is: ", questionNum);
-  //takes in array/object
-  //generates container for question, along with appropriate buttons
   const template = `<section class="box" id="question-screen">
       <form class="container">
       <h1 class="neuro"> Neuropsychology</H1>
@@ -210,9 +208,7 @@ function answerFormGenerator() {
   if (correctAnswer === userAnswer) {
     store.score += 1;
     store.questionNumber += 1;
-    //generates container for answer screen
-    // takes in a true or false
-    // if statment that checks if the answer is right or wrong and switches the template based on it
+  
     template = `<section class="box" id="answer-screen">
         <h2>Correct!</h2>
         <p>You got ${score + 1} of ${totalQuestions} correct so far.</p>`;
@@ -236,8 +232,7 @@ function answerFormGenerator() {
 
 function welcomeScreen() {
   console.log("welcomescreen  ran");
-  //no inputs
-  //when site is loaded, generates "Welcome" and a start quiz button
+ 
   const template = `<section class="box" id="welcome-screen">
       <h1>Neuropsychology </h1>
       <button class='next-question' id="start">Start</button>
