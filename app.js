@@ -1,118 +1,64 @@
+'use strict';
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
 /* eslint-disable indent */
 /* eslint-disable quotes */
 /* eslint-disable strict */
-'use strict';
-
-
-
 
 /**
- * 
- * Technical requirements:
- * 
- * Your app should include a render() function, that regenerates the view each time the store is updated. 
- * See your course material, consult your instructor, and reference the slides for more details.
- *
- * NO additional HTML elements should be added to the index.html file.
- *
- * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
- *
- * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
- * 
+ * Example store structure
  */
-
-/********** TEMPLATE GENERATION FUNCTIONS **********/
-
-// These functions return HTML templates
-
-/********** RENDER FUNCTION(S) **********/
-
-// This function conditionally replaces the contents of the <main> tag based on the state of the store
-
-/********** EVENT HANDLER FUNCTIONS **********/
-
-// These functions handle events (submit, click, etc)
-
-
-
-/********** TEMPLATE GENERATION FUNCTIONS **********/
-
-// These functions return HTML templates
-
-
-
-const store = {
-  // 5 or more questions are required
+const database = {
+  title: 'Neuropsychology Quiz',
+  welcomeText: 'How much do you know about Neuropsychology?',
   questions: [
     {
       question:
-        "Which part of the brain houses our abilities to organize tasks and carry them out?",
-      answers: ["Orbital lobe",
-       "frontal lobe",
-        "partietal lobe",
-         "temporal lobe"],
-      correctAnswer: "frontal lobe",
-      
+       'Which part of the brain houses our ability to organize tasks and carry them out?',
+      answers: ['Orbital lobe',
+      'Frontal lobe',
+       'Partietal lobe',
+        'Temporal lobe'],
+      correctAnswer: 'Frontal lobe',
+    },
+    {
+      question: 
+      'What activity has shown to help regrow grey matter in the brain?',
+      answers: ['Running', 'Swimming', 'Meditating', 'Puzzles'],
+      correctAnswer:'Meditating',
     },
     {
       question:
-        "What activity has shown to help regrow grey matter in the brain? ",
-      answers: ["running",
-       "swimming",
-      "meditating",
-       "doing puzzles"],
-      correctAnswer: "meditating",
-      
+       'Does the brain influence the body and vice versa?',
+      answers: ['Yes, but not very much', 'No, not at all', 'Yes and its a lot', 'None is sure'],
+      correctAnswer: 'Yes and its a lot',
     },
     {
       question:
-        "Does the brain influence the body and vice versa? ",
-      answers: ["yes, but not very much",
-       "no, not at all ",
-        "yes and it's a lot ",
-         "No one is sure"],
-      correctAnswer:  "yes and it's a lot ",
-      
+        'How many layers exist in the visual cortex?',
+      answers: ['2', '0', '5', '10'],
+      correctAnswer: '5',
     },
     {
       question:
-        "How many layers exist in the visual cortex?",
-      answers: [
-        "2",
-        "0",
-        "5",
-        "10",
-      ],
-      correctAnswer: "5",
-     
+       'What can happen to a person as a consequence when they experience chronic gran mal seizures?',
+      answers: ['The person can become more religious', 'The person loses the ability to walk', 'The person develops another personality', 'The person cannot use their left hand'],
+      correctAnswer: 'The person can become more religious',
     },
-    {
-      question:
-        " What can happen to a person as a consequence when they experience chronic gran mal seizures?  ",
-      answers: [
-        "they can become more religious",
-        "they lose the ability to walk",
-        "they develop another personality",
-        "they can't use their left hand",
-      ],
-      correctAnswer: "they can become more religious",
-    
-    },
-    
   ],
-  quizStarted: false,
-  questionNumber: 0,
-  score: 0,
+  state: {
+    score: 0,
+    currentIndex: 0,
+    answer: '',
+    message: ''
+  },
 };
-
 /**
  *
  * Technical requirements:
  *
  * Your app should include a render() function, that regenerates the view each time the store is updated.
- * See your course material, consult your instructor, and reference the slides for more details.
+ * See your course material and access support for more details.
  *
  * NO additional HTML elements should be added to the index.html file.
  *
@@ -125,200 +71,188 @@ const store = {
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
 // These functions return HTML templates
-
-function labQuestionRetriever() {
-  //haha dog joke
-  //this function takes the store and gives the question value for adding to the template
-  let num = store.questionNumber;
-  let nextQuestion = store.questions[num];
-  console.log(nextQuestion);
-  return nextQuestion;
+function generateWelcomeViewTemplate() {
+  return `
+  <p>${database.welcomeText}</p>
+  <button id="start-quiz">Start</button>`;
 }
 
-function templateQGenerator() {
-  let questionNum = store.questionNumber;
+function generateQuestionTemplate(index) {
+  let question = database.questions[index];
+  // in line 94, database.questions is referencing the property questions in the object database
+  let answers = question.answers.map(generateAnswerElement).join('');
 
-  console.log("`templateGenerator`  ran");
-  let question = labQuestionRetriever();
-  console.log("q# is: ", questionNum);
-  //takes in array/object
-  //generates container for question, along with appropriate buttons
-  const template = `<section class="box" id="question-screen">
-      <form class="container">
-      <h1 class="neuro"> Neuropsychology</H1>
-        <ul >
-          <div class='textbox'><p>${question.question}</p></div>
-          <li>
-            <input
-              type="radio"
-              name="quizquestion"
-              id="correct"
-              value="${question.answers[0]}" 
-              required
-            />
-            <label for="correct">${question.answers[0]}</label>
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="quizquestion"
-              id="quizquestion"
-              value="${question.answers[1]}"
-            />
-            <label for="incorrect1">${question.answers[1]}</label>
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="quizquestion"
-              id="quizquestion"
-              value="${question.answers[2]}"
-            />
-            <label for="incorrect2">${question.answers[2]}</label>
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="quizquestion"
-              id="quizquestion"
-              value="${question.answers[3]}"
-            />
-            <label for="incorrect3">${question.answers[3]}</label>
-          </li>
-          <button type="submit" class="submit-question">Submit</button>
-        </ul>
-        <div class="innercontainer">
-            <div><p> Question ${questionNum + 1} of ${store.questions.length
-  }</p></div>
-            <div><p> ${store.score} of ${questionNum}</p></div>
-        </div>
-      </form>
-      
-    </section>`;
-  renderIt(template);
+  let submitButton =
+    '<input type="submit" id="select-answer" value="Select Answer" class="submit-button">';
+    //this variable contains the template for generating a submit button
+
+  return `${generateHeaderTemplate()}
+  <form>
+    <div class="choices">
+      ${answers}
+    </div>
+    ${submitButton}
+  </form>
+  ${generateFooterTemplate()}
+  `;
 }
 
-function answerFormGenerator() {
-  console.log("answer generator ran");
-  let score = store.score;
-  let totalQuestions = store.questions.length;
-  let num = store.questionNumber;
-  let userAnswer = $('input[name="quizquestion"]:checked').val();
-  let correctAnswer = labQuestionRetriever().correctAnswer;
-  console.log("user chose: ", userAnswer);
-  let template;
-  if (correctAnswer === userAnswer) {
-    store.score += 1;
-    store.questionNumber += 1;
-    //generates container for answer screen
-    // takes in a true or false
-    // if statment that checks if the answer is right or wrong and switches the template based on it
-    template = `<section class="box" id="answer-screen">
-        <h2>Correct!</h2>
-        <p>You got ${score + 1} of ${totalQuestions} correct so far.</p>`;
-  } else {
-    store.questionNumber += 1;
-    template = `<section class="box" id="answer-screen">
-        <h2> Oops!</h2>
-        <p>The Correct Answer Was: ${correctAnswer}</p>
-        <p>You got ${score} of ${totalQuestions} correct so far.</p>`;
+function generateAnswerElement(answer) {
+  return `
+    <p class="answer-item">
+      <input type="radio" id="${answer}" name="answer" value="${answer}"> 
+      <label for="${answer}">${answer}</label>
+    </p>
+  `;
+}
+
+function generateFeedbackTemplate(feedback) {
+  let button = '<button id="next-question">Next Question</button>';
+  if (database.state.currentIndex + 1 === database.questions.length) {
+    button = '<button id="results">Results</button>';
+    //if all questions have been answers, change next button to result button
   }
-  if (store.questionNumber === store.questions.length) {
-    template +=
-      "<button class='finish-quiz'>Finish</button></section>";
-  } else {
-    template +=
-      "<button class='next-question'>Next</button></section>";
+  return `
+  ${generateHeaderTemplate()}
+    <p>${feedback}</p>
+    <p>${button}</p>
+    ${generateFooterTemplate()}
+  `;
+}
+
+function generateResultTemplate() {
+  let finalScore = database.state.score;
+  let totalQuestions = database.questions.length;
+  return `
+  <header><h2>Final Score</h2></header>
+  <p>${finalScore / totalQuestions > .5 ? 'Great Work!! ' : '' }You answered ${finalScore} questions out of ${totalQuestions} correctly!</p>
+  <button id="start-over">Start Over</button>
+  `;
+}
+
+function generateHeaderTemplate() {
+  return `<header><h2>${database.questions[database.state.currentIndex].question}</h2></header>`;
+}
+
+function generateFooterTemplate() {
+  let attempts = database.state.currentIndex;
+
+  let currentQuestion = attempts + 1;
+
+  let message = database.state.message;
+
+  if (database.state.answer) {
+    attempts++;
   }
-  renderIt(template);
+  return `
+  <footer>
+    ${message ? `<p class="message">${message}</p>` : ''}
+    <p>Current score: ${database.state.score} current answers out of ${attempts} attempted</p>
+    <p>Current question: ${currentQuestion} out of ${database.questions.length}</p>
+  </footer>`;
 }
 
+/********** VIEW FUNCTION **********/
 
-function welcomeScreen() {
-  console.log("welcomescreen  ran");
-  //no inputs
-  //when site is loaded, generates "Welcome" and a start quiz button
-  const template = `<section class="box" id="welcome-screen">
-      <h1>Neuropsychology </h1>
-      <button class='next-question' id="start">Start</button>
-    </section>`;
-  renderIt(template);
+// These functions will return the views to render
+
+function welcomeView() {
+  let welcomeViewTemplate = generateWelcomeViewTemplate();
+  return welcomeViewTemplate;
 }
 
-function conclusionGenerator() {
-  console.log("conclusion generator fn ran");
-  //take in questions object
-  //output window with final score, button to retake quiz
-  let score = store.score;
-  let totalQuestions = store.questions.length;
-  const template = `<section class="box" id="answer-screen">
-        <h2>Great Work!</h2>
-        <p>You got ${score} of ${totalQuestions} correct</p>
-        <p> Click the button below to try again.</p>
-        <button class="again-button">Let's go!</button>
-    </section>`;
-  renderIt(template);
+function questionView() {
+  let questionTemplate = generateQuestionTemplate(database.state.currentIndex);
+  return questionTemplate;
+}
+
+function feedbackView() {
+  let correctAnswer = database.questions[database.state.currentIndex].correctAnswer;
+  let feedbackTemplate = '';
+  if (database.state.answer === correctAnswer) {
+    database.state.score++;
+    feedbackTemplate = generateFeedbackTemplate(`${correctAnswer} is correct!`);
+  } else {
+    feedbackTemplate = generateFeedbackTemplate(`Wrong Answer. The correct answer is 
+      ${correctAnswer}`);
+  }
+  database.state.currentIndex++;
+  return feedbackTemplate;
+}
+
+function resultView() {
+  let resultTemplate = generateResultTemplate();
+  return resultTemplate;
+}
+/********** RENDER FUNCTION(S) **********/
+
+function render(currentView) {
+  $('h1, title').html(database.title);
+  let html = currentView();
+  $('main').html(html);
+  database.state.message = '';
+}
+
+// This function conditionally replaces the contents of the <main> tag based on the state of the store object
+
+/********** EVENT HANDLER FUNCTIONS **********/
+
+function startQuizEvent() {
+  $('main').on('click', '#start-quiz', (event) => {
+    event.preventDefault();
+    render(questionView);
+  });
+}
+
+function nextQuestionEvent() {
+  $('main').on('click', '#next-question', (event) => {
+    event.preventDefault();
+    database.state.answer = null;
+    render(questionView);
+  });
+}
+
+function selectAnswerEvent() {
+  $('main').on('click', '#select-answer', (event) => {
+    event.preventDefault();
+    let answer = $('input[name="answer"]:checked').val();
+    if (answer) {
+      database.state.answer = answer;
+      render(feedbackView);
+    } else {
+      database.state.message = 'Please select an answer';
+      render(questionView);
+    }
+  });
+}
+
+function resultButtonEvent() {
+  $('main').on('click', '#results', (event) => {
+    event.preventDefault();
+    render(resultView);
+  });
+}
+
+function startOverButtonEvent() {
+  $('main').on('click', '#start-over', (event) => {
+    event.preventDefault();
+    database.state = {
+      score: 0,
+      currentIndex: 0,
+      answer: '',
+      message: ''
+    };
+    render(welcomeView);
+  });
 }
 
 function main() {
-  renderIt();
-  welcomeScreen();
-  startQuiz();
-  checkAnswer();
-  nextQuestion();
-  finishQuiz();
-  onceMore();
+  selectAnswerEvent();
+  startQuizEvent();
+  nextQuestionEvent();
+  resultButtonEvent();
+  startOverButtonEvent();
+  render(welcomeView);
 }
 
 $(main);
-
-// /********** RENDER FUNCTION(S) **********/
-
-
-function renderIt(state) {
-  console.log("renderIt ran");
-  $("body").html(`${state}`);
-}
-// /********** EVENT HANDLER FUNCTIONS **********/
-
-
-
-function checkAnswer() {
-  console.log("check answer ran ");
-  $("body").on("click", `.submit-question`, function (event) {
-    event.preventDefault();
-    answerFormGenerator();
-  });
-}
-
-function nextQuestion() {
-  console.log("next q ran");
-  $("body").on("click", ".next-question", function (evt) {
-    evt.preventDefault();
-    templateQGenerator();
-  });
-}
-function startQuiz() {
-  console.log("start quiz ran 2");
-  $("body").on("click", "#start", function (evt) {
-    nextQuestion();
-  });
-}
-function finishQuiz() {
-  console.log("finish quiz ran");
-  $("body").on("click", ".finish-quiz", function (evt) {
-    evt.preventDefault();
-    conclusionGenerator();
-  });
-}
-function onceMore() {
-  console.log("once more ran");
-  $("body").on("click", ".again-button", function (evt) {
-    store.questions.score = 0;
-    store.questions.questionNumber = 0;
-    location.reload();
-    welcomeScreen();
-  });
-}
-
-

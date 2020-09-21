@@ -1,174 +1,105 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@600&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 html{
-  box-sizing: border-box;
+  box-sizing:border-box;
 }
 
-body{
-
-  background:#DDDFDF;
-   display: grid;
-   place-items: center;
-   height: 100vh;
-   padding-bottom: 200px;
-   padding-top: 50px;
-   
-   background-size: cover, cover;
-   background-repeat: no-repeat;
-   background-position: center;
-   background-blend-mode:normal, luminosity;
- 
- }
-h1{
-  font-family:'Baloo Bhaina 2', cursive;
-  font-weight: 700 ;
-
-}
-.neuro{
-  font-family:'Press Start 2P', sans-serif;
-  margin-left:10px;
-  padding-top: 0.3em;
-  padding-left: 0.3em;
-  padding-right:0.2;
-  padding-bottom: 0.3em;
-  background:#FCA17D;
-  color:#9A348E;
-  font-weight: 300;
-  font: size 14px;;
-}
-h2{
-  font-family:'Baloo Bhaina 2', cursive;
-  font-weight: 700 ;
-  text-align:center;
-}  
-
-.box{
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  margin:5px;
-  padding: 5px 0px 5px 0px;
-  height: auto;
+body {
     
-}
-
-
-
-#question-screen{
-  text-align: left;
-}
-
-#question-screen ul{
-  padding: 0px 15px 0px 15px;
-  list-style: none;
-  margin-top: 0px
-}
-#question-screen ul div{
-  margin:5px;
-  padding: 0px;
-  margin-top:0
-}
-#question-screen ul div p{
-margin-left: 0; 
-margin-right: 0;
-}
-.container{
-  display:flex;
-  flex-direction: column;
-  margin:auto;
-  margin-bottom:10px;
-  background-color:#DA627D ;
- 
-
-
-}
-.innercontainer{
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-
-.next-question,.submit-question{
-  width: 100%;
-  margin: auto;
-  padding: 0px 8px 0px 8px;
-  font-family:'Baloo Bhaina 2', cursive;
-  font-weight: 300;
-}
-
-
-.next-question,.submit-question {
-  margin-top:10px;
-  padding-top: 0.3em; 
-  width: 50%;
-  border-radius: 20px;
-  background-color: #3D3A4B;
-  color:white;
+    text-align: center;
+    font-family: 'Baloo Bhaina 2', sans-serif;
+    background-color: #495867; 
+    color: #FFFFFF;
+    font-size:20px;
+  }
+  header{
+    margin-top:1.0em;
+    margin-bottom:0.3em;
+    
+  }
   
-}
-
-.again-button{
-  margin:auto;
-}
-#start{
-  margin:auto;
-  font-family: 'Press Start 2P', sans-serif;
-  font-size: larger;
-  background-color: none;
+  main {
+    margin-top:0.3em;
+    background-color: #e7ad99;
+    padding-top:0.3em;
+    padding-bottom: 0.5em;
+    width:50%;
+    margin:auto;
+  }
   
-}
-ul, p{
-  font-family:'Baloo Bhaina 2', cursive;
-  font-weight: 200;
-  font-size: 12px;
-  margin:15px;
-  margin-top:0
-}
-
-
-li {
-  margin-top: 10px;
- 
-}
-
-
-.text-left {
-  text-align: left; 
-  margin: 0px 4px 10px 14px;
-  font-family:'Baloo Bhaina 2', cursive;
-  font-weight: 200;
-}
-
-@media all and (min-width:600px) {
-
-.box {
-
- 
-  width: 400px;
+  h1 {
+    font-family:'Press Start 2P',sans-serif;
+    font-size: 38px;
+    margin:auto;
+    padding-top:0.5em;
+    padding-bottom:0.5em;
+    background:#5a6775;
+    color:#ECC8AF;
+    width:50%;
+  }
   
-}
+  h2 {
+    font-size: 24px;
+  }
 
-}
-
-.textbox {
-
-    all: inherit;
-}
-
-body{
- 
- 
-  background-size: contain, cover;
-  background-repeat: no-repeat;
-  background-position: center, left top;
-  background-blend-mode: normal, darken;
-}
-
-ul, p {
-  font-size: 25px;
-}
+  
+  
+  button, .submit-button, .answer-item label{
+    padding: 1rem; 
+    border-radius: 20px;
+    font-size: 18px;
+    border: none;
+  }
+  
+  button, .submit-button {
+    background-color: #c88364;
+    color:#FFFFFF;
+  }
+  
+  button:focus, .submit-button:focus, input[type="radio"]:focus + label {
+    padding: calc(1rem - 2px);
+    border: 2px solid #383B53;
+  }
+  
+  input[type="radio"] {
+    appearance: none;
+  }
+  
+  .message {
+    color: #D64045;
+  }
+  
+  .answer-item label {
+    background-color: #383B53; 
+    display: block;
+  }
+  
+  .choices {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+  }
+  
+  input[type="radio"]:checked + label{
+    background-color: #C88364;
+  }
+  
+  .submit-button {
+    margin: 1rem 0 0;
+  }
+  
+  @media all and (min-width: 800px) {
+      .choices {
+        flex-direction: row;
+      }
+      .answer-item {
+        margin: 0 2rem 0 0;
+      }
+      .answer-item:last-child {
+        margin-right: 0;
+      }
+  }
